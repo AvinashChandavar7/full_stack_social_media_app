@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import GridPostList from "@/components/shared/GridPostList";
 import Loader from "@/components/shared/Loader";
 import SearchResults from "@/components/shared/SearchResults";
@@ -8,7 +9,7 @@ import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 const Explore = () => {
-  const { ref, InView } = useInView();
+  const { ref, inView } = useInView();
   const [searchValue, setSearchValue] = useState("");
 
   const debouncedValue = useDebounce(searchValue, 500);
@@ -19,14 +20,15 @@ const Explore = () => {
 
 
   const shouldShowSearchResults = searchValue !== "";
-  const shouldShowPosts = !shouldShowSearchResults && posts?.pages.every((item) => item.documents.length === 0)
+  const shouldShowPosts = !shouldShowSearchResults && posts?.pages.every((item) => item?.documents.length === 0)
 
 
   useEffect(() => {
-    if (InView && !searchValue) {
+    if (inView && !searchValue) {
       fetchNextPage();
     }
-  }, [InView, searchValue])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchValue])
 
 
 
@@ -76,14 +78,14 @@ const Explore = () => {
           shouldShowSearchResults ? (
             <SearchResults
               isSearchFetching={isSearchFetching}
-              searchedPosts={searchedPosts}
+              searchedPosts={searchedPosts?.documents}
             />
           ) : shouldShowPosts ? (
             <p className="text-light-4 mt-10 text-center w-full">
               End Of Posts
             </p>
           ) : posts?.pages?.map((item, index) => (
-            <GridPostList key={`page-${index}`} posts={item.documents} />
+            <GridPostList key={`page-${index}`} posts={item?.documents} />
           ))
         }
       </div>

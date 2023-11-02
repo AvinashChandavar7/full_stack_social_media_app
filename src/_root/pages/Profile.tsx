@@ -1,6 +1,8 @@
 const Profile = () => {
   return (
-    <div>Profile</div>
+    <div className="flex-center w-full text-4xl">
+      Under Progress....
+    </div>
   );
 }
 

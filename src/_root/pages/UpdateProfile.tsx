@@ -1,6 +1,8 @@
 const UpdateProfile = () => {
   return (
-    <div>UpdateProfile</div>
+    <div className="flex-center w-full text-4xl">
+      Under Progress....
+    </div>
   );
 }
 

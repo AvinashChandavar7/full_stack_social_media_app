@@ -364,8 +364,10 @@ export async function deleteSavedPost(savedRecordId: string) {
 
 /*  */
 
-export async function getInfinitePosts({ pageParmas }: { pageParmas: number }) {
-  const queries: any[] = [Query.orderDesc('$updatedAt'), Query.limit(10)]
+export async function getInfinitePosts({ pageParmas = 0 }: { pageParmas: number }) {
+
+  const queries = [Query.orderDesc('$updatedAt'), Query.limit(10)];
+
 
   if (pageParmas) {
     queries.push(Query.cursorAfter(pageParmas.toString()));

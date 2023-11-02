@@ -1,7 +1,9 @@
 
 const LikedPosts = () => {
   return (
-    <div>LikedPosts</div>
+    <div className="flex-center w-full text-4xl">
+      Under Progress....
+    </div>
   )
 }
 
